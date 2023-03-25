@@ -21,7 +21,7 @@ client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secr
 sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
 creator = "spotify"
-playlist_id = "37i9dQZF1DX4JAvHpjipBk"
+playlist_id = "37i9dQZF1DX4JAvHpjipBk" #this is the specific web link for the New Music Friday Playlist
 
 playlist = sp.user_playlist_tracks(creator, playlist_id)
 
