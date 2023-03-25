@@ -53,7 +53,7 @@ except TypeError:
 #Transform the list into a json file and write it as playlist.json
 playlist_json = json.dumps(track_features)
 
-with open("playlist.json", "w") as f:
+with open("/usr/local/airflow/dags/main_files/playlist.json", "w") as f:
     f.write(playlist_json)
 
 print("main.py ran succesfully!")
