@@ -34,15 +34,15 @@ The ETL process is as follows:
 ### Extraction: 
 The data is extracted from the "New Music Friday" playlist on Spotify using the Spotify API and a python script. This script uses the Spotipy python library to make that connection easy.
 ### Transformation: 
-The extracted data is transformed into a JSON file.
+The extracted data is transformed with a full loop to pull out the categories that are desired and then put into a JSON file. 
 ### Loading: 
-The JSON file is loaded into a MongoDB database using the load_data() function in mongo.py.
+The JSON file is loaded into a MongoDB database. This proccess is automated with using apache airflow. Airflow is set up using ASTRO CLI and docker. * It is important to change the file paths within the main.py file as well as the pymongo DAG as they might not match the same on your computer*
 ### Airflow Task
-The Airflow task is scheduled to run every Friday at 2am est using a cron expression (0 6 * * 5). This ensures that new data from the "New Music Friday" playlist is automatically added to the database each week after the playlist is updated.
+The Airflow task is scheduled to run every Friday at 2am est using a cron expression (0 6 * * 5). This ensures that new data from the "New Music Friday" playlist is automatically added to the database each week after the playlist is updated. The DAG itself is set up with two tasks. One for executing the main.py file which writes the JSON file and the other to conenct to MongoDB and load the file into the database.
 
 Conclusion
 ====
 
-This project demonstrates how to use ETL to extract data from an API, transform it into a usable format, and load it into a database. By using Apache Airflow, the process can be automated and scheduled to run at a specified time, ensuring that the database is always up-to-date and grows.
+This project demonstrates how to use ETL to extract data from an API, transform it into a usable format, and load it into a database. By using Apache Airflow, the process can be automated and scheduled to run at a specified time, ensuring that the database is always up-to-date and grows. Some important items to keep in mind to is to make sure the file paths are correct in your files and to also set up the Mongodb databse in atlas prior to running.
 
 
